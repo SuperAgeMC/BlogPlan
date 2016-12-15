@@ -1,0 +1,50 @@
+create table sj_blogplan_user
+(
+ user_id VARCHAR2(10),
+ user_name VARCHAR2(20),
+ user_email VARCHAR2(25),
+ user_sex VARCHAR2(2),
+ user_age VARCHAR2(5),
+ user_education VARCHAR2(10),
+ user_character VARCHAR2(30),
+ user_password VARCHAR2(20),
+ user_power VARCHAR2(10),
+ user_headimage VARCHAR2(50),
+ user_registertime VARCHAR2(20),
+ user_blogage VARCHAR2(5)
+);
+
+create table sj_blogplan_login
+(
+  login_id VARCHAR2(10),
+  login_email VARCHAR2(25),
+  login_password VARCHAR2(20)
+);
+
+create table sj_blogplan_blog
+(
+  blog_id VARCHAR2(10),
+  user_id VARCHAR2(10),
+  type_id VARCHAR2(3),
+  blog_abstract VARCHAR2(50),
+  blog_url VARCHAR2(50),
+  blog_time VARCHAR2(20)
+);
+
+create table sj_blogplan_type
+(
+  type_id VARCHAR2(3),
+  type_name VARCHAR2(10)
+);
+
+create table sj_blogplan_comment
+(
+  comment_id VARCHAR2(10),
+  blog_id VARCHAR2(10),
+  f_user_id VARCHAR2(10),
+  b_user_id VARCHAR2(10),
+  floor_id VARCHAR2(10),
+  storey_id VARCHAR2(10),
+  comment_time VARCHAR2(20),
+  comment_content VARCHAR2(100)
+);
