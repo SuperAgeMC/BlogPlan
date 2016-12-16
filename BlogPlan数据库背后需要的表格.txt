@@ -1,0 +1,99 @@
+
+
+正式创建User表之后的语句：
+create table sj_blogplan_user
+(
+ user_id VARCHAR2(10),
+ user_name VARCHAR2(20),
+ user_email VARCHAR2(25),
+ user_sex VARCHAR2(2),
+ user_age VARCHAR2(5),
+ user_education VARCHAR2(10),
+ user_character VARCHAR2(30),
+ user_power VARCHAR2(10),
+ user_headimage VARCHAR2(50),
+ user_registertime VARCHAR2(20),
+ user_blogage VARCHAR2(5),
+ CONSTRAINT pk_blogplan primary key(user_email) 
+);
+
+
+创建User表的索引，进行Userid的赋值
+create sequence blogplan_count_user_id
+  increment by 1
+  start with 1
+  nomaxvalue
+  nocycle
+  nocache
+
+设置触发器，实质当执行插入操作时启动触发器，并且实现自增
+
+create TRIGGER blogplan_voluation
+  before
+  insert ON SJ_BLOGPLAN_USER
+  for each row
+BEGIN
+  select blogplan_count_user_id.nextval into :new.user_id from SJ_BLOGPLAN_USER;
+end;
+创建过程进行密码的校验
+create or replace procedure checkout_login_password
+(
+  pd_login_email in SJ_BLOGPLAN_LOGIN.LOGIN_EMAIL%TYPE,
+  pd_login_password in SJ_BLOGPLAN_LOGIN.LOGIN_PASSWORD%TYPE,
+  result_login out number
+)
+as
+  search_login_password varchar2(20) := null;
+begin
+  result_login := 0;
+  select login_password into search_login_password from SJ_BLOGPLAN_LOGIN
+  where LOGIN_EMAIL = pd_login_email;
+  if search_login_password=null then
+    result_login := 0;
+  else
+    if search_login_password = pd_login_password then
+      result_login := 1;
+    else
+      result_login := 0;
+    end if;
+  end if;
+end;
+
+
+
+
+create table sj_blogplan_login
+(
+  login_email VARCHAR2(25),
+  login_password VARCHAR2(20)
+);
+
+
+//此处开始还没有创建
+create table sj_blogplan_blog
+(
+  blog_id VARCHAR2(10),
+  user_id VARCHAR2(10),
+  type_id VARCHAR2(3),
+  blog_abstract VARCHAR2(50),
+  blog_url VARCHAR2(50),
+  blog_time VARCHAR2(20)
+);
+
+create table sj_blogplan_type
+(
+  type_id VARCHAR2(3),
+  type_name VARCHAR2(10)
+);
+
+create table sj_blogplan_comment
+(
+  comment_id VARCHAR2(10),
+  blog_id VARCHAR2(10),
+  f_user_id VARCHAR2(10),
+  b_user_id VARCHAR2(10),
+  floor_id VARCHAR2(10),
+  storey_id VARCHAR2(10),
+  comment_time VARCHAR2(20),
+  comment_content VARCHAR2(100)
+);
