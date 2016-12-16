@@ -14,6 +14,8 @@ public class User {
 	private String userEmail;
 	//这是用户的Email
 	//这个Email 和 Login表中Emial 是互为外键的关系
+	private String userPower;
+	//代表用户的权限
 	private String userEducation;
 	//这是用户的学历
 	private String usercharacter;
@@ -28,9 +30,9 @@ public class User {
 	
 	//必须穿件的默认构造函数
 	//唏嘘有一个默认的构造函数
-		public User (){
+	public User (){
 			
-		}
+	}
 	
 	
 	public User (User user){
@@ -47,6 +49,12 @@ public class User {
 	}
 	
 	
+	public String getUserPower() {
+		return userPower;
+	}
+	public void setUserPower(String userPower) {
+		this.userPower = userPower;
+	}
 	public Date getUserRegistertime() {
 		return userRegistertime;
 	}
@@ -62,9 +70,6 @@ public class User {
 	public void setUserBlogage(int userBlogage) {
 		this.userBlogage = userBlogage;
 	}
-
-	
-	
 	public String getUserId() {
 		return userId;
 	}

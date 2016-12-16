@@ -7,6 +7,7 @@ public class Blog {
 	private String blogId;
 	private String userId;
 	private String typeId;
+	private String workstypeId;
 	private String blogAbstract;
 	private String blogUrl;
 	private Date blogTime;
@@ -23,10 +24,19 @@ public class Blog {
 		this.blogAbstract = blog.getBlogAbstract();
 		this.blogUrl = blog.getBlogUrl();
 		this.blogTime = blog.getBlogTime();
+		this.workstypeId = blog.getTypeId();
 	}
 	
 	
 	
+	public String getWorkstypeId() {
+		return workstypeId;
+	}
+
+	public void setWorkstypeId(String workstypeId) {
+		this.workstypeId = workstypeId;
+	}
+
 	public String getBlogId() {
 		return blogId;
 	}
